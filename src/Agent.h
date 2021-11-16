@@ -28,6 +28,8 @@ private:
 	// Pathfinding
 	Path path;
 	int currentTargetIndex;
+	// Define pathfinder
+	// Define Graph
 
 	float mass;
 	float orientation;
