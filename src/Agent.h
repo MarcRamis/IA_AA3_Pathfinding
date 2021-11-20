@@ -7,7 +7,7 @@
 #include "Path.h"
 #include "Vector2D.h"
 #include "utils.h"
-
+#include "Graph.h"
 
 class Agent
 {
@@ -29,7 +29,7 @@ private:
 	Path path;
 	int currentTargetIndex;
 	// Define pathfinder
-	// Define Graph
+	Graph graph;
 
 	float mass;
 	float orientation;
@@ -64,5 +64,5 @@ public:
 	void update(float dtime, SDL_Event *event);
 	void draw();
 	bool Agent::loadSpriteTexture(char* filename, int num_frames=1);
-	
+	void setGraph(Graph _graph);
 };

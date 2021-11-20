@@ -1,10 +1,12 @@
 ﻿  Agent.cpp
+  Graph.cpp
+D:\Uni Projects\IA\AA3_Pathfinding\src\Agent.h(32,13): error C3646: 'graph': unknown override specifier
+D:\Uni Projects\IA\AA3_Pathfinding\src\Agent.h(32,13): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+D:\Uni Projects\IA\AA3_Pathfinding\src\Agent.h(67,22): error C2061: syntax error: identifier 'Graph'
+D:\Uni Projects\IA\AA3_Pathfinding\src\Graph.cpp(4,1): error C2600: 'Graph::Graph': cannot define a compiler-generated special member function (must be declared in the class first)
   Grid.cpp
   main.cpp
   PathFollowing.cpp
   ScenePathFindingMouse.cpp
-  SDL_SimpleApp.cpp
   Seek.cpp
-  utils.cpp
   Generating Code...
-  SDL_Pathfinding.vcxproj -> C:\Users\marc.ramis\Desktop\AA3_Pathfinding\bin\SDL_Pathfinding.exe
