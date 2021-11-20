@@ -11,10 +11,8 @@ ScenePathFindingMouse::ScenePathFindingMouse()
 
 	srand((unsigned int)time(NULL));
 
-	//Graph* graph = new Graph(maze);
-
 	Agent *agent = new Agent;
-	//agent->setGraph(*graph);
+	agent->setGraph(maze);
 	agent->loadSpriteTexture("../res/soldier.png", 4);
 	agent->setBehavior(new PathFollowing);
 	agent->setTarget(Vector2D(-20,-20));

@@ -197,7 +197,7 @@ bool Agent::loadSpriteTexture(char* filename, int _num_frames)
 	return true;
 }
 
-void Agent::setGraph(Graph _graph)
+void Agent::setGraph(Grid *grid)
 {
-	graph = _graph;
+	graph = new Graph(grid);
 }

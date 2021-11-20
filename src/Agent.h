@@ -29,7 +29,7 @@ private:
 	Path path;
 	int currentTargetIndex;
 	// Define pathfinder
-	Graph graph;
+	Graph *graph;
 
 	float mass;
 	float orientation;
@@ -64,5 +64,5 @@ public:
 	void update(float dtime, SDL_Event *event);
 	void draw();
 	bool Agent::loadSpriteTexture(char* filename, int num_frames=1);
-	void setGraph(Graph _graph);
+	void setGraph(Grid *grid);
 };

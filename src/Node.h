@@ -8,9 +8,11 @@ class Node
 public:
 
 	Vector2D pos;
-	std::vector<Node> *neighbours;
+	std::vector<Node*> neighbours;
 	float weight;
 
 	Node();
-	Node(Vector2D _pos, std::vector<Node> *_neighbours, float _weight);
+	Node(Vector2D _pos, float _weight);
+	Node(Vector2D _pos, std::vector<Node*> _neighbours, float _weight);
+	~Node();
 };
