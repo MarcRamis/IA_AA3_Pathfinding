@@ -72,7 +72,6 @@ Graph::Graph(Grid *grid)
 		}
 		std::cout << std::endl;
 	}
-	int a = 0;
 }
 
 Graph::~Graph()

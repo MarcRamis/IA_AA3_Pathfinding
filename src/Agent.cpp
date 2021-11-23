@@ -90,6 +90,9 @@ void Agent::update(float dtime, SDL_Event *event)
 	default:
 		break;
 	}
+	
+	// Apply algorithm research
+	//pathfinder->applyResearch();
 
 	// Apply the steering behavior
 	steering_behaviour->applySteeringForce(this, dtime);
