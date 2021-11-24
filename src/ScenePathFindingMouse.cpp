@@ -12,9 +12,10 @@ ScenePathFindingMouse::ScenePathFindingMouse()
 	srand((unsigned int)time(NULL));
 
 	Agent *agent = new Agent;
-	agent->setGraph(maze);
 	agent->loadSpriteTexture("../res/soldier.png", 4);
+	agent->setGraph(maze);
 	agent->setBehavior(new PathFollowing);
+	agent->setPathfinder(new BFS);
 	agent->setTarget(Vector2D(-20,-20));
 	agents.push_back(agent);
 
@@ -24,11 +25,14 @@ ScenePathFindingMouse::ScenePathFindingMouse()
 		rand_cell = Vector2D((float)(rand() % maze->getNumCellX()), (float)(rand() % maze->getNumCellY()));
 	agents[0]->setPosition(maze->cell2pix(rand_cell));
 
+	std::cout << agent[0].getGraph()->getCurrentNodePosition(maze->pix2cell(agent->getPosition()))->pos.x << agent[0].getGraph()->getCurrentNodePosition(maze->pix2cell(agent->getPosition()))->pos.y << std::endl;
+
 	// set the coin in a random cell (but at least 3 cells far from the agent)
 	coinPosition = Vector2D(-1,-1);
 	while ((!maze->isValidCell(coinPosition)) || (Vector2D::Distance(coinPosition, rand_cell)<3))
 		coinPosition = Vector2D((float)(rand() % maze->getNumCellX()), (float)(rand() % maze->getNumCellY()));
 
+	//agents[0]->addPathPoint(maze->cell2pix(coinPosition));
 }
 
 ScenePathFindingMouse::~ScenePathFindingMouse()
@@ -74,6 +78,8 @@ void ScenePathFindingMouse::update(float dtime, SDL_Event *event)
 		coinPosition = Vector2D(-1, -1);
 		while ((!maze->isValidCell(coinPosition)) || (Vector2D::Distance(coinPosition, maze->pix2cell(agents[0]->getPosition()))<3))
 			coinPosition = Vector2D((float)(rand() % maze->getNumCellX()), (float)(rand() % maze->getNumCellY()));
+
+		agents[0]->addPathPoint(maze->cell2pix(coinPosition));
 	}
 	
 }

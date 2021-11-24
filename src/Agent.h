@@ -19,16 +19,22 @@ public:
 		virtual ~SteeringBehavior() {};
 		virtual void applySteeringForce(Agent *agent, float dtime) {};
 	};
+	class PathFindingAlgorithm
+	{
+	public:
+		PathFindingAlgorithm() {};
+		virtual ~PathFindingAlgorithm() {};
+		virtual void CalculatePath(Agent* agent) {};
+	};
 private:
 	SteeringBehavior *steering_behaviour;
 	Vector2D position;
 	Vector2D velocity;
 	Vector2D target;
 
-	// Pathfinding
 	Path path;
 	int currentTargetIndex;
-	// Define pathfinder
+	PathFindingAlgorithm *pathfinder;
 	Graph *graph;
 
 	float mass;
@@ -51,7 +57,8 @@ public:
 	float getMaxVelocity();
 	float getMaxForce();
 	float getMass();
-	void setBehavior(SteeringBehavior *behavior);
+	void setBehavior(SteeringBehavior* behavior);
+	void setPathfinder(PathFindingAlgorithm *algorithm);
 	void setPosition(Vector2D position);
 	void setTarget(Vector2D target);
 	void setVelocity(Vector2D velocity);
@@ -65,4 +72,5 @@ public:
 	void draw();
 	bool Agent::loadSpriteTexture(char* filename, int num_frames=1);
 	void setGraph(Grid *grid);
+	Graph* getGraph();
 };

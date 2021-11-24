@@ -12,5 +12,7 @@ public:
 	Graph();
 	Graph(Grid* grid);
 	~Graph();
-};
 
+	std::vector<Node*> getNodes();
+	Node* getCurrentNodePosition(Vector2D target);
+};

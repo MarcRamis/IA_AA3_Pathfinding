@@ -72,6 +72,7 @@ Graph::Graph(Grid *grid)
 		}
 		std::cout << std::endl;
 	}
+
 }
 
 Graph::~Graph()
@@ -79,5 +80,20 @@ Graph::~Graph()
 	for (int i = 0; i < (int)nodes.size(); i++)
 	{
 		delete nodes[i];
+	}
+}
+
+std::vector<Node*> Graph::getNodes()
+{
+	return nodes;
+}
+
+Node* Graph::getCurrentNodePosition(Vector2D target)
+{
+	for (Node *currentNode : nodes)
+	{
+		if (currentNode->pos == target) {
+			return currentNode;
+		}
 	}
 }
