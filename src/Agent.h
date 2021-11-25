@@ -76,4 +76,7 @@ public:
 	Graph* getGraph();
 	Vector2D getGoal();
 	void setGoal(Vector2D goal);
+			 
+	Vector2D cell2pix(Vector2D cell);
+	Vector2D pix2cell(Vector2D cell);
 };

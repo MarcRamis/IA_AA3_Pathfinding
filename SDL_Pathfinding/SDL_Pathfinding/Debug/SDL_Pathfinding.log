@@ -1,77 +1,10 @@
 ﻿  Agent.cpp
   BFS.cpp
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\BFS.cpp(24,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\BFS.cpp(41,20): warning C4018: '<': signed/unsigned mismatch
-  Graph.cpp
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(11,66): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(11,49): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(17,73): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(17,52): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(19,81): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(19,60): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(20,66): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(20,45): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(20,19): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(23,71): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(23,52): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(25,79): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(25,60): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(26,64): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(26,45): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(26,19): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(29,73): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(29,52): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(31,81): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(31,60): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(32,66): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(32,45): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(32,19): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(36,69): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(36,50): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(38,77): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(38,58): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(39,62): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(39,43): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(39,19): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(42,69): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(42,50): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(44,77): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(44,58): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(45,62): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(45,43): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(45,19): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(49,73): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(49,52): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(51,81): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(51,60): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(52,66): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(52,45): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(52,19): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(55,71): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(55,52): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(57,79): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(57,60): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(58,64): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(58,45): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(58,19): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(61,73): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(61,52): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(63,81): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(63,60): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(64,66): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(64,45): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(64,19): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(67,70): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(67,53): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(67,147): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(67,130): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(67,106): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(71,70): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(71,53): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\Uni Projects\IA\AA3_Pathfinding\src\BFS.cpp(27,21): warning C4018: '<': signed/unsigned mismatch
+D:\Uni Projects\IA\AA3_Pathfinding\src\BFS.cpp(44,20): warning C4018: '<': signed/unsigned mismatch
   PathFollowing.cpp
   ScenePathFindingMouse.cpp
   Seek.cpp
   main.cpp
   Generating Code...
-C:\Users\marc.ramis\Desktop\AA3_Pathfinding\src\Graph.cpp(99): warning C4715: 'Graph::getCurrentNodePosition': not all control paths return a value
-  SDL_Pathfinding.vcxproj -> C:\Users\marc.ramis\Desktop\AA3_Pathfinding\bin\SDL_Pathfinding.exe
+  SDL_Pathfinding.vcxproj -> D:\Uni Projects\IA\AA3_Pathfinding\bin\SDL_Pathfinding.exe
