@@ -10,39 +10,49 @@ BFS::~BFS()
 
 void BFS::CalculatePath(Agent* agent)
 {
+	
 	Node* start = agent->getGraph()->getCurrentNodePosition(agent->getGraph()->pix2cell(agent->getPosition())); // Acces to first node in graph
 	frontier.push(start);
 	Node* currentNode = frontier.front();
 	currentNode->visited = true;
-	currentNode->comeFrom = nullptr;
-	
-	std::cout << agent->pix2cell(agent->getGoal()).x  << '-' << agent->pix2cell(agent->getGoal()).y << std::endl;
+
+	std::cout << agent->pix2cell(agent->getGoal()).x << '-' << agent->pix2cell(agent->getGoal()).y << std::endl;
 
 	while (!frontier.empty()) {
 		currentNode = frontier.front();
-		frontier.pop();
+
 		if ((agent->getGraph()->cell2pix(currentNode->pos) == agent->getGoal())) {
+			std::cout << agent->getGraph()->cell2pix(currentNode->pos).x << "-" << agent->getGraph()->cell2pix(currentNode->pos).y << "  " << agent->getGoal().x << "-" << agent->getGoal().y << std::endl;
+
 			break;
 		}
 		for (int i = 0; i < currentNode->neighbours.size(); i++)
 		{
-			if (!currentNode->neighbours[i]->visited)
+			if (!agent->getGraph()->getCurrentNodePosition(Vector2D(currentNode->neighbours[i]->pos.x, currentNode->neighbours[i]->pos.y))->visited)
 			{
-				frontier.push(currentNode->neighbours[i]);
-				currentNode->neighbours[i]->visited = true;	
-				currentNode->neighbours[i]->comeFrom = currentNode;
+				frontier.push(agent->getGraph()->getCurrentNodePosition(Vector2D(currentNode->neighbours[i]->pos.x, currentNode->neighbours[i]->pos.y)));
+				agent->getGraph()->getCurrentNodePosition(Vector2D(currentNode->neighbours[i]->pos.x, currentNode->neighbours[i]->pos.y))->visited = true;
+				agent->getGraph()->getCurrentNodePosition(Vector2D(currentNode->neighbours[i]->pos.x, currentNode->neighbours[i]->pos.y))->comeFrom = currentNode;
 			}
 		}
+		std::cout << frontier.front()->pos.x << "-" << frontier.front()->pos.y << " ";
+		frontier.pop();
 	}
 
-	std::vector<Node*> path;
+	std::stack<Node*> path;
 	while (currentNode != start) {
-		path.push_back(currentNode);
+		path.push(currentNode);
+		if (currentNode->comeFrom == nullptr)
+		{
+			break;
+		}
 		currentNode = currentNode->comeFrom;
 	}
 
-	for (int i = 0; i < path.size(); i++)
+	while(path.size() != 0)
 	{
-		agent->addPathPoint(agent->getGraph()->cell2pix(path[i]->pos));
+		agent->addPathPoint(agent->getGraph()->cell2pix(path.top()->pos));
+		path.pop();
 	}
+	
 }
