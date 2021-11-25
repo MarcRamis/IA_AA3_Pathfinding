@@ -22,7 +22,34 @@ void Dijkstra::CalculatePath(Agent* agent)
 
 		if ((agent->getGraph()->cell2pix(currentNode->pos) == agent->getGoal()))
 		{
-			break;
+			//break;
+			////// Repetir hasta encontrar el camino más óptimo
+			currentValue = 0;
+			Node* tempNode = currentNode;
+			while (tempNode != start)
+			{
+				currentValue += currentNode->weight;
+				tempNode = tempNode->comeFrom;
+			}
+
+			if (currentValue < costSoFar)
+			{
+				while (path.size() != 0)
+				{
+					path.pop();
+				}
+				costSoFar = currentValue;
+				while (currentNode != start) {
+					path.push(currentNode);
+					if (currentNode->comeFrom == nullptr)
+					{
+						break;
+					}
+					currentNode = currentNode->comeFrom;
+				}
+			}
+			frontier.pop();
+			//////
 		}
 		for (int i = 0; i < currentNode->neighbours.size(); i++)
 		{
@@ -43,15 +70,7 @@ void Dijkstra::CalculatePath(Agent* agent)
 		frontier.pop();
 	}*/
 
-	std::stack<Node*> path;
-	while (currentNode != start) {
-		path.push(currentNode);
-		if (currentNode->comeFrom == nullptr)
-		{
-			break;
-		}
-		currentNode = currentNode->comeFrom;
-	}
+	
 
 	while (path.size() != 0)
 	{
@@ -67,4 +86,5 @@ void Dijkstra::CalculatePath(Agent* agent)
 	{
 		frontier.pop();
 	}
+	costSoFar = 1000000;
 }

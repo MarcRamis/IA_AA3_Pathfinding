@@ -1,2 +1,4 @@
-﻿  ScenePathFindingMouse.cpp
+﻿  Dijkstra.cpp
+C:\Users\alex\Documents\Universidad\GitKraken\AA3_Pathfinding\src\Dijkstra.cpp(54,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\alex\Documents\Universidad\GitKraken\AA3_Pathfinding\src\Dijkstra.cpp(81,20): warning C4018: '<': signed/unsigned mismatch
   SDL_Pathfinding.vcxproj -> C:\Users\alex\Documents\Universidad\GitKraken\AA3_Pathfinding\bin\SDL_Pathfinding.exe
