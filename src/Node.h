@@ -22,4 +22,12 @@ public:
 	~Node();
 
 	float GetCost();
+
+	bool operator()(const Node* lhs, const Node* rhs) const
+	{
+		return lhs->weight > rhs->weight;
+	}
+
 };
+
+

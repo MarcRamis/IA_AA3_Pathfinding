@@ -10,6 +10,7 @@
 #include "PathFollowing.h"
 #include "Grid.h"
 #include "BFS.h"
+#include "Dijkstra.h"
 
 class ScenePathFindingMouse :
 	public Scene
