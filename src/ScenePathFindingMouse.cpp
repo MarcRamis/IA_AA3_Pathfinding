@@ -33,7 +33,9 @@ ScenePathFindingMouse::ScenePathFindingMouse()
 		coinPosition = Vector2D((float)(rand() % maze->getNumCellX()), (float)(rand() % maze->getNumCellY()));
 
 	//agents[0]->addPathPoint(maze->cell2pix(coinPosition));
+	agents[0]->setGoal(maze->cell2pix(coinPosition));
 }
+
 
 ScenePathFindingMouse::~ScenePathFindingMouse()
 {

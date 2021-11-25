@@ -5,7 +5,7 @@
 class BFS : public Agent::PathFindingAlgorithm
 {
 private: 
-	//std::queue<Age>
+	std::queue<Node*> frontier;
 
 public:
 	BFS();

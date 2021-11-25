@@ -15,4 +15,7 @@ public:
 
 	std::vector<Node*> getNodes();
 	Node* getCurrentNodePosition(Vector2D target);
+
+	Vector2D cell2pix(Vector2D cell);
+	Vector2D pix2cell(Vector2D pix);
 };

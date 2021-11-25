@@ -31,6 +31,7 @@ private:
 	Vector2D position;
 	Vector2D velocity;
 	Vector2D target;
+	Vector2D goal;
 
 	Path path;
 	int currentTargetIndex;
@@ -73,4 +74,6 @@ public:
 	bool Agent::loadSpriteTexture(char* filename, int num_frames=1);
 	void setGraph(Grid *grid);
 	Graph* getGraph();
+	Vector2D getGoal();
+	void setGoal(Vector2D goal);
 };

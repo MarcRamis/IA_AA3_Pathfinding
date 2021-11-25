@@ -21,3 +21,8 @@ Node::~Node()
 		delete neighbours[i];
 	}
 }
+
+float Node::GetCost()
+{
+	return this->weight + comeFrom->weight;
+}

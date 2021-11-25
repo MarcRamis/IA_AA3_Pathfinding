@@ -137,6 +137,16 @@ Graph* Agent::getGraph()
 	return graph;
 }
 
+Vector2D Agent::getGoal()
+{
+	return goal;
+}
+
+void Agent::setGoal(Vector2D _goal)
+{
+	goal = _goal;
+}
+
 Vector2D Agent::getPathPoint(int idx)
 {
 	return path.points[idx];
