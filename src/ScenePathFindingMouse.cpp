@@ -81,6 +81,7 @@ void ScenePathFindingMouse::update(float dtime, SDL_Event *event)
 			coinPosition = Vector2D((float)(rand() % maze->getNumCellX()), (float)(rand() % maze->getNumCellY()));
 
 		agents[0]->setGoal(maze->cell2pix(coinPosition));
+		agents[0]->setNewPathSearch();
 	}
 	
 }

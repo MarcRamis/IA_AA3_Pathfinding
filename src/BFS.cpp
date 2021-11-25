@@ -21,9 +21,8 @@ void BFS::CalculatePath(Agent* agent)
 	while (!frontier.empty()) {
 		currentNode = frontier.front();
 
-		if ((agent->getGraph()->cell2pix(currentNode->pos) == agent->getGoal())) {
-			std::cout << agent->getGraph()->cell2pix(currentNode->pos).x << "-" << agent->getGraph()->cell2pix(currentNode->pos).y << "  " << agent->getGoal().x << "-" << agent->getGoal().y << std::endl;
-
+		if ((agent->getGraph()->cell2pix(currentNode->pos) == agent->getGoal())) 
+		{
 			break;
 		}
 		for (int i = 0; i < currentNode->neighbours.size(); i++)
@@ -55,4 +54,12 @@ void BFS::CalculatePath(Agent* agent)
 		path.pop();
 	}
 	
+	for (int i = 0; i < agent->getGraph()->getNodes().size(); i++)
+	{
+		agent->getGraph()->getNodes()[i]->visited = false;
+	}
+	while (!frontier.empty())
+	{
+		frontier.pop();
+	}
 }

@@ -133,6 +133,7 @@
   <ItemGroup>
     <ClCompile Include="..\src\Agent.cpp" />
     <ClCompile Include="..\src\BFS.cpp" />
+    <ClCompile Include="..\src\Dijkstra.cpp" />
     <ClCompile Include="..\src\Graph.cpp" />
     <ClCompile Include="..\src\Grid.cpp" />
     <ClCompile Include="..\src\main.cpp" />
@@ -146,6 +147,7 @@
   <ItemGroup>
     <ClInclude Include="..\src\Agent.h" />
     <ClInclude Include="..\src\BFS.h" />
+    <ClInclude Include="..\src\Dijkstra.h" />
     <ClInclude Include="..\src\Graph.h" />
     <ClInclude Include="..\src\Grid.h" />
     <ClInclude Include="..\src\Node.h" />

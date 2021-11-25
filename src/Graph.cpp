@@ -14,24 +14,13 @@ Graph::Graph(Grid *grid)
 				std::vector<Node*> tmpNeighboursNodes;
 
 				///// LEFT
-				if (grid->isValidCell(Vector2D((unsigned int)j - 1, (unsigned int)i - 1))) // UP LEFT
-				{
-					tmpNeighboursNode = new Node(Vector2D((unsigned int)j - 1, (unsigned int)i - 1), 
-						grid->Weight(Vector2D((unsigned int)j - 1, (unsigned int)i - 1)));
-					tmpNeighboursNodes.push_back(tmpNeighboursNode);
-				}
 				if (grid->isValidCell(Vector2D((unsigned int)j - 1, (unsigned int)i))) // LEFT
 				{
 					tmpNeighboursNode = new Node(Vector2D((unsigned int)j - 1, (unsigned int)i),
 						grid->Weight(Vector2D((unsigned int)j - 1, (unsigned int)i)));
 					tmpNeighboursNodes.push_back(tmpNeighboursNode);
 				}
-				if (grid->isValidCell(Vector2D((unsigned int)j - 1, (unsigned int)i + 1))) // DOWN LEFT
-				{
-					tmpNeighboursNode = new Node(Vector2D((unsigned int)j - 1, (unsigned int)i + 1),
-						grid->Weight(Vector2D((unsigned int)j - 1, (unsigned int)i + 1)));
-					tmpNeighboursNodes.push_back(tmpNeighboursNode);
-				}
+				
 				///// CENTER
 				if (grid->isValidCell(Vector2D((unsigned int)j, (unsigned int)i - 1))) // UP
 				{
@@ -46,24 +35,41 @@ Graph::Graph(Grid *grid)
 					tmpNeighboursNodes.push_back(tmpNeighboursNode);
 				}
 				///// RIGHT
-				if (grid->isValidCell(Vector2D((unsigned int)j + 1, (unsigned int)i - 1))) // UP RIGHT
-				{		
-					tmpNeighboursNode = new Node(Vector2D((unsigned int)j + 1, (unsigned int)i - 1),
-						grid->Weight(Vector2D((unsigned int)j + 1, (unsigned int)i - 1)));
-					tmpNeighboursNodes.push_back(tmpNeighboursNode);
-				}											   
+													   
 				if (grid->isValidCell(Vector2D((unsigned int)j + 1, (unsigned int)i))) // RIGHT
 				{											   
 					tmpNeighboursNode = new Node(Vector2D((unsigned int)j + 1, (unsigned int)i),
 						grid->Weight(Vector2D((unsigned int)j + 1, (unsigned int)i)));
 					tmpNeighboursNodes.push_back(tmpNeighboursNode);
 				}											   
+				
+				///// LEFT
+				if (grid->isValidCell(Vector2D((unsigned int)j - 1, (unsigned int)i - 1))) // UP LEFT
+				{
+					tmpNeighboursNode = new Node(Vector2D((unsigned int)j - 1, (unsigned int)i - 1),
+						grid->Weight(Vector2D((unsigned int)j - 1, (unsigned int)i - 1)));
+					tmpNeighboursNodes.push_back(tmpNeighboursNode);
+				}
+				if (grid->isValidCell(Vector2D((unsigned int)j - 1, (unsigned int)i + 1))) // DOWN LEFT
+				{
+					tmpNeighboursNode = new Node(Vector2D((unsigned int)j - 1, (unsigned int)i + 1),
+						grid->Weight(Vector2D((unsigned int)j - 1, (unsigned int)i + 1)));
+					tmpNeighboursNodes.push_back(tmpNeighboursNode);
+				}
+				///// RIGHT
+				if (grid->isValidCell(Vector2D((unsigned int)j + 1, (unsigned int)i - 1))) // UP RIGHT
+				{
+					tmpNeighboursNode = new Node(Vector2D((unsigned int)j + 1, (unsigned int)i - 1),
+						grid->Weight(Vector2D((unsigned int)j + 1, (unsigned int)i - 1)));
+					tmpNeighboursNodes.push_back(tmpNeighboursNode);
+				}
 				if (grid->isValidCell(Vector2D((unsigned int)j + 1, (unsigned int)i + 1))) // DOWN RIGHT
 				{
 					tmpNeighboursNode = new Node(Vector2D((unsigned int)j + 1, (unsigned int)i + 1),
 						grid->Weight(Vector2D((unsigned int)j + 1, (unsigned int)i + 1)));
 					tmpNeighboursNodes.push_back(tmpNeighboursNode);
 				}
+
 				Node* tmpNode = new Node(Vector2D((unsigned int)j, (unsigned int)i), tmpNeighboursNodes, grid->Weight(Vector2D((unsigned int)j, (unsigned int)i)));
 				nodes.push_back(tmpNode);
 				tmpNeighboursNodes.clear();

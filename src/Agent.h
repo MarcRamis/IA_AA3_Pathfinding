@@ -49,6 +49,8 @@ private:
 	int sprite_w;
 	int sprite_h;
 
+	bool searchedPath;
+
 public:
 	Agent();
 	~Agent();
@@ -76,6 +78,7 @@ public:
 	Graph* getGraph();
 	Vector2D getGoal();
 	void setGoal(Vector2D goal);
+	void setNewPathSearch();
 			 
 	Vector2D cell2pix(Vector2D cell);
 	Vector2D pix2cell(Vector2D cell);
