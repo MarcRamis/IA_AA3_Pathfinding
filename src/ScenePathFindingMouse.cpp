@@ -15,7 +15,7 @@ ScenePathFindingMouse::ScenePathFindingMouse()
 	agent->loadSpriteTexture("../res/soldier.png", 4);
 	agent->setGraph(maze);
 	agent->setBehavior(new PathFollowing);
-	agent->setPathfinder(new Dijkstra());
+	agent->setPathfinder(new BFS());
 	agent->setTarget(Vector2D(-20,-20));
 	agents.push_back(agent);
 
@@ -24,8 +24,6 @@ ScenePathFindingMouse::ScenePathFindingMouse()
 	while (!maze->isValidCell(rand_cell))
 		rand_cell = Vector2D((float)(rand() % maze->getNumCellX()), (float)(rand() % maze->getNumCellY()));
 	agents[0]->setPosition(maze->cell2pix(rand_cell));
-
-	std::cout << agent[0].getGraph()->getCurrentNodePosition(maze->pix2cell(agent->getPosition()))->pos.x << agent[0].getGraph()->getCurrentNodePosition(maze->pix2cell(agent->getPosition()))->pos.y << std::endl;
 
 	// set the coin in a random cell (but at least 3 cells far from the agent)
 	coinPosition = Vector2D(-1,-1);

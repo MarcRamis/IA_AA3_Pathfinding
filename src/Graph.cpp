@@ -74,9 +74,9 @@ Graph::Graph(Grid *grid)
 				nodes.push_back(tmpNode);
 				tmpNeighboursNodes.clear();
 			}
-			std::cout << grid->Weight(Vector2D((unsigned int)j, (unsigned int)i));
+			//std::cout << grid->Weight(Vector2D((unsigned int)j, (unsigned int)i));
 		}
-		std::cout << std::endl;
+		//std::cout << std::endl;
 	}
 
 }

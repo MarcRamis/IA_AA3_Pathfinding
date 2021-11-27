@@ -10,31 +10,34 @@ BFS::~BFS()
 
 void BFS::CalculatePath(Agent* agent)
 {
-	
-	Node* start = agent->getGraph()->getCurrentNodePosition(agent->getGraph()->pix2cell(agent->getPosition())); // Acces to first node in graph
+	Node* start = agent->getGraph()->getCurrentNodePosition(agent->getGraph()->pix2cell(agent->getPosition()));
 	frontier.push(start);
 	Node* currentNode = frontier.front();
 	currentNode->visited = true;
-
-	std::cout << agent->pix2cell(agent->getGoal()).x << '-' << agent->pix2cell(agent->getGoal()).y << std::endl;
+	currentNode->comeFrom = nullptr;
 
 	while (!frontier.empty()) {
 		currentNode = frontier.front();
 
 		if ((agent->getGraph()->cell2pix(currentNode->pos) == agent->getGoal())) 
 		{
+			while (!frontier.empty())
+			{
+				frontier.pop();
+			}
 			break;
 		}
-		for (int i = 0; i < currentNode->neighbours.size(); i++)
+		
+		for (Node *next : currentNode->neighbours)
 		{
-			if (!agent->getGraph()->getCurrentNodePosition(Vector2D(currentNode->neighbours[i]->pos.x, currentNode->neighbours[i]->pos.y))->visited)
+			if (!agent->getGraph()->getCurrentNodePosition(next->pos)->visited) 
 			{
-				frontier.push(agent->getGraph()->getCurrentNodePosition(Vector2D(currentNode->neighbours[i]->pos.x, currentNode->neighbours[i]->pos.y)));
-				agent->getGraph()->getCurrentNodePosition(Vector2D(currentNode->neighbours[i]->pos.x, currentNode->neighbours[i]->pos.y))->visited = true;
-				agent->getGraph()->getCurrentNodePosition(Vector2D(currentNode->neighbours[i]->pos.x, currentNode->neighbours[i]->pos.y))->comeFrom = currentNode;
+				frontier.push(agent->getGraph()->getCurrentNodePosition(next->pos));
+				agent->getGraph()->getCurrentNodePosition(next->pos)->visited = true;
+				agent->getGraph()->getCurrentNodePosition(next->pos)->comeFrom = currentNode;
 			}
 		}
-		std::cout << frontier.front()->pos.x << "-" << frontier.front()->pos.y << " ";
+		
 		frontier.pop();
 	}
 
@@ -54,12 +57,8 @@ void BFS::CalculatePath(Agent* agent)
 		path.pop();
 	}
 	
-	for (int i = 0; i < agent->getGraph()->getNodes().size(); i++)
-	{
-		agent->getGraph()->getNodes()[i]->visited = false;
-	}
-	while (!frontier.empty())
-	{
-		frontier.pop();
-	}
+	//for (int i = 0; i < agent->getGraph()->getNodes().size(); i++)
+	//{
+	//	agent->getGraph()->getNodes()[i]->visited = false;
+	//}
 }

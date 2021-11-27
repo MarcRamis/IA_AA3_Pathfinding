@@ -12,7 +12,7 @@ public:
 	Vector2D pos;
 	std::vector<Node*> neighbours;
 	float weight;
-	float heuristic;
+
 	bool visited;
 	Node* comeFrom;
 
@@ -21,13 +21,16 @@ public:
 	Node(Vector2D _pos, std::vector<Node*> _neighbours, float _weight);
 	~Node();
 
-	float GetCost();
-
 	bool operator()(const Node* lhs, const Node* rhs) const
 	{
 		return lhs->weight > rhs->weight;
 	}
 
+	//bool operator<(const Node* node) const
+	//{
+	//	return this->weight > node->weight;
+	//}
+	
 };
 
 
