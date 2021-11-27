@@ -37,6 +37,8 @@ void Dijkstra::CalculatePath(Agent* agent)
 				agent->getGraph()->getCurrentNodePosition(next->pos)->costSoFar = newCost;
 				agent->getGraph()->getCurrentNodePosition(next->pos)->comeFrom = currentNode;
 				frontier.push(agent->getGraph()->getCurrentNodePosition(next->pos));
+				
+				countFrontier++;
 			}
 		}
 
@@ -59,4 +61,7 @@ void Dijkstra::CalculatePath(Agent* agent)
 	}
 
 	agent->getGraph()->Reset();
+	counter++;
+	std::cout << counter << "- Explored nodes counter in Dijkstra: " << countFrontier << std::endl;
+	countFrontier = 0;
 }

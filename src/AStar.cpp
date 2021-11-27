@@ -14,6 +14,7 @@ void AStar::CalculatePath(Agent* agent)
 	frontier.push(start);
 	Node* currentNode = frontier.top();
 	currentNode->comeFrom = nullptr;
+	countFrontier++;
 
 	while (!frontier.empty()) {
 		currentNode = frontier.top();
@@ -39,7 +40,9 @@ void AStar::CalculatePath(Agent* agent)
 				agent->getGraph()->getCurrentNodePosition(next->pos)->priority = agent->getGraph()->getCurrentNodePosition(next->pos)->costSoFar + agent->getGraph()->getCurrentNodePosition(next->pos)->heuristic;
 				
 				agent->getGraph()->getCurrentNodePosition(next->pos)->comeFrom = currentNode;
-				frontier.push(agent->getGraph()->getCurrentNodePosition(next->pos));	
+				frontier.push(agent->getGraph()->getCurrentNodePosition(next->pos));
+				
+				countFrontier++;
 			}
 		}
 	}
@@ -57,10 +60,13 @@ void AStar::CalculatePath(Agent* agent)
 	while (path.size() != 0)
 	{
 		agent->addPathPoint(agent->getGraph()->cell2pix(path.top()->pos));
-		path.pop();
+		path.pop();	
 	}
 
 	agent->getGraph()->Reset();
+	counter++;
+	std::cout << counter << "- Explored nodes counter in AStar: " << countFrontier << std::endl;
+	countFrontier = 0;
 }
 
 float AStar::ManhattanDistance(Vector2D& n1, Vector2D& n2)

@@ -21,6 +21,10 @@ public:
 	};
 	class PathFindingAlgorithm
 	{
+	protected:
+		int countFrontier = 0;
+		int counter = 0;
+
 	public:
 		PathFindingAlgorithm() {};
 		virtual ~PathFindingAlgorithm() {};

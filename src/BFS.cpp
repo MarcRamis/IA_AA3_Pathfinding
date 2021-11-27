@@ -33,6 +33,8 @@ void BFS::CalculatePath(Agent* agent)
 			{
 				agent->getGraph()->getCurrentNodePosition(next->pos)->comeFrom = currentNode;
 				frontier.push(agent->getGraph()->getCurrentNodePosition(next->pos));
+
+				countFrontier++;
 			}
 		}
 		
@@ -56,4 +58,7 @@ void BFS::CalculatePath(Agent* agent)
 	}
 	
 	agent->getGraph()->Reset();
+	counter++;
+	std::cout << counter << "- Explored nodes counter in BFS: " << countFrontier << std::endl;
+	countFrontier = 0;
 }

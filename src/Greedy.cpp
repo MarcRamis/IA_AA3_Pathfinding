@@ -35,6 +35,7 @@ void Greedy::CalculatePath(Agent* agent)
 				agent->getGraph()->getCurrentNodePosition(next->pos)->heuristic = ManhattanDistance(agent->getGraph()->pix2cell(agent->getGoal()), agent->getGraph()->getCurrentNodePosition(next->pos)->pos);
 				agent->getGraph()->getCurrentNodePosition(next->pos)->comeFrom = currentNode;
 				frontier.push(agent->getGraph()->getCurrentNodePosition(next->pos));
+				countFrontier++;
 			}
 		}
 
@@ -57,6 +58,9 @@ void Greedy::CalculatePath(Agent* agent)
 	}
 
 	agent->getGraph()->Reset();
+	counter++;
+	std::cout << counter << "- Explored nodes counter in Greedy: " << countFrontier << std::endl;
+	countFrontier = 0;
 }
 
 float Greedy::ManhattanDistance(Vector2D& n1, Vector2D& n2)
