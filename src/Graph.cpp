@@ -112,3 +112,14 @@ Vector2D Graph::pix2cell(Vector2D pix)
 {
 	return Vector2D((float)((int)pix.x / CELL_SIZE), (float)((int)pix.y / CELL_SIZE));
 }
+
+void Graph::Reset()
+{
+	for (Node *node : nodes)
+	{
+		node->comeFrom = nullptr;
+		node->costSoFar = 0;
+		node->heuristic = 0;
+		node->priority = 0;
+	}
+}

@@ -19,5 +19,5 @@ public:
 	Vector2D cell2pix(Vector2D cell);
 	Vector2D pix2cell(Vector2D pix);
 	
-	float GetCost(Node *n1, Node* n2);
+	void Reset();
 };

@@ -11,6 +11,5 @@ public:
 	Greedy();
 	~Greedy();
 	virtual void CalculatePath(Agent* agent);
-
 	float ManhattanDistance(Vector2D& n1, Vector2D& n2);
 };

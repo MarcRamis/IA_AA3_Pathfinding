@@ -11,11 +11,13 @@ public:
 
 	Vector2D pos;
 	std::vector<Node*> neighbours;
+	Node* comeFrom = nullptr;
+	
 	float weight = 0;
 	float costSoFar = 0;
 	float heuristic = 0;
+	float priority = 0;
 
-	Node* comeFrom;
 
 	Node();
 	Node(Vector2D _pos, float _weight);
@@ -35,6 +37,14 @@ public:
 		bool operator()(const Node* lhs, const Node* rhs)
 		{
 			return lhs->heuristic > rhs->heuristic;
+		}
+	};
+
+	struct Priority
+	{
+		bool operator()(const Node* lhs, const Node* rhs)
+		{
+			return lhs->priority > rhs->priority;
 		}
 	};
 };

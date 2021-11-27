@@ -56,11 +56,7 @@ void Greedy::CalculatePath(Agent* agent)
 		path.pop();
 	}
 
-	for (int i = 0; i < agent->getGraph()->getNodes().size(); i++)
-	{
-		agent->getGraph()->getNodes()[i]->costSoFar = 0;
-		agent->getGraph()->getNodes()[i]->comeFrom = nullptr;
-	}
+	agent->getGraph()->Reset();
 }
 
 float Greedy::ManhattanDistance(Vector2D& n1, Vector2D& n2)
