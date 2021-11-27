@@ -11,13 +11,14 @@ Dijkstra::~Dijkstra()
 void Dijkstra::CalculatePath(Agent* agent)
 {
 	Node* start = agent->getGraph()->getCurrentNodePosition(agent->getGraph()->pix2cell(agent->getPosition()));
-	currentWeight = 0;
 	frontier.push(start);
 	Node* currentNode = frontier.top();
 	currentNode->visited = true;
+	currentNode->comeFrom = nullptr;
 
 	while (!frontier.empty()) {
 		currentNode = frontier.top();
+		frontier.pop();
 
 		if ((agent->getGraph()->cell2pix(currentNode->pos) == agent->getGoal()))
 		{
@@ -27,16 +28,19 @@ void Dijkstra::CalculatePath(Agent* agent)
 			}
 			break;
 		}
-		for (int i = 0; i < currentNode->neighbours.size(); i++)
+
+		for (Node* next : currentNode->neighbours)
 		{
-			if (!agent->getGraph()->getCurrentNodePosition(Vector2D(currentNode->neighbours[i]->pos.x, currentNode->neighbours[i]->pos.y))->visited)
+			float newCost = currentNode->costSoFar + currentNode->weight;
+			if (!agent->getGraph()->getCurrentNodePosition(next->pos)->visited || currentNode->costSoFar > newCost)
 			{
-				frontier.push(agent->getGraph()->getCurrentNodePosition(Vector2D(currentNode->neighbours[i]->pos.x, currentNode->neighbours[i]->pos.y)));
-				agent->getGraph()->getCurrentNodePosition(Vector2D(currentNode->neighbours[i]->pos.x, currentNode->neighbours[i]->pos.y))->visited = true;
-				agent->getGraph()->getCurrentNodePosition(Vector2D(currentNode->neighbours[i]->pos.x, currentNode->neighbours[i]->pos.y))->comeFrom = currentNode;
+				agent->getGraph()->getCurrentNodePosition(next->pos)->visited = true;
+				agent->getGraph()->getCurrentNodePosition(next->pos)->costSoFar = newCost;
+				agent->getGraph()->getCurrentNodePosition(next->pos)->comeFrom = currentNode;
+				frontier.push(agent->getGraph()->getCurrentNodePosition(next->pos));
 			}
 		}
-		frontier.pop();
+
 	}
 
 	std::stack<Node*> path;
@@ -58,7 +62,10 @@ void Dijkstra::CalculatePath(Agent* agent)
 	for (int i = 0; i < agent->getGraph()->getNodes().size(); i++)
 	{
 		agent->getGraph()->getNodes()[i]->visited = false;
+		agent->getGraph()->getNodes()[i]->costSoFar = 0;
 	}
+
+
 	//
 	//while (!frontier.empty()) {
 	//	currentNode = frontier.top();
