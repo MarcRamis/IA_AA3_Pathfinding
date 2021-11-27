@@ -15,7 +15,7 @@ ScenePathFindingMouse::ScenePathFindingMouse()
 	agent->loadSpriteTexture("../res/soldier.png", 4);
 	agent->setGraph(maze);
 	agent->setBehavior(new PathFollowing);
-	agent->setPathfinder(new Dijkstra());
+	agent->setPathfinder(new BFS);
 	agent->setTarget(Vector2D(-20,-20));
 	agents.push_back(agent);
 

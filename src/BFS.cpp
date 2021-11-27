@@ -13,7 +13,6 @@ void BFS::CalculatePath(Agent* agent)
 	Node* start = agent->getGraph()->getCurrentNodePosition(agent->getGraph()->pix2cell(agent->getPosition()));
 	frontier.push(start);
 	Node* currentNode = frontier.front();
-	currentNode->visited = true;
 	currentNode->comeFrom = nullptr;
 
 	while (!frontier.empty()) {
@@ -30,11 +29,10 @@ void BFS::CalculatePath(Agent* agent)
 		
 		for (Node *next : currentNode->neighbours)
 		{
-			if (!agent->getGraph()->getCurrentNodePosition(next->pos)->visited) 
+			if (agent->getGraph()->getCurrentNodePosition(next->pos)->comeFrom == nullptr) 
 			{
-				frontier.push(agent->getGraph()->getCurrentNodePosition(next->pos));
-				agent->getGraph()->getCurrentNodePosition(next->pos)->visited = true;
 				agent->getGraph()->getCurrentNodePosition(next->pos)->comeFrom = currentNode;
+				frontier.push(agent->getGraph()->getCurrentNodePosition(next->pos));
 			}
 		}
 		
@@ -59,6 +57,6 @@ void BFS::CalculatePath(Agent* agent)
 	
 	for (int i = 0; i < agent->getGraph()->getNodes().size(); i++)
 	{
-		agent->getGraph()->getNodes()[i]->visited = false;
+		agent->getGraph()->getNodes()[i]->comeFrom = nullptr;
 	}
 }
