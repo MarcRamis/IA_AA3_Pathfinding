@@ -21,9 +21,20 @@ public:
 	Node(Vector2D _pos, float _weight);
 	Node(Vector2D _pos, std::vector<Node*> _neighbours, float _weight);
 	~Node();
-
-	bool operator()(const Node* lhs, const Node* rhs)
+	
+	struct CostSoFar
 	{
-		return lhs->costSoFar > rhs->costSoFar;
-	}
+		bool operator()(const Node* lhs, const Node* rhs)
+		{
+			return lhs->costSoFar > rhs->costSoFar;
+		}
+	};
+
+	struct Heuristic
+	{
+		bool operator()(const Node* lhs, const Node* rhs)
+		{
+			return lhs->heuristic > rhs->heuristic;
+		}
+	};
 };

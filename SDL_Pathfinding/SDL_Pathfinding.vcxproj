@@ -132,9 +132,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Agent.cpp" />
+    <ClCompile Include="..\src\AStar.cpp" />
     <ClCompile Include="..\src\BFS.cpp" />
     <ClCompile Include="..\src\Dijkstra.cpp" />
     <ClCompile Include="..\src\Graph.cpp" />
+    <ClCompile Include="..\src\Greedy.cpp" />
     <ClCompile Include="..\src\Grid.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\Node.cpp" />
@@ -146,9 +148,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Agent.h" />
+    <ClInclude Include="..\src\AStar.h" />
     <ClInclude Include="..\src\BFS.h" />
     <ClInclude Include="..\src\Dijkstra.h" />
     <ClInclude Include="..\src\Graph.h" />
+    <ClInclude Include="..\src\Greedy.h" />
     <ClInclude Include="..\src\Grid.h" />
     <ClInclude Include="..\src\Node.h" />
     <ClInclude Include="..\src\Path.h" />
