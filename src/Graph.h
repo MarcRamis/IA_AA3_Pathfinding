@@ -20,6 +20,7 @@ public:
 	void ChangeWeight();
 	void SetWeightFromCurrentNodePosition(Vector2D target);
 	void SetInitialWeight();
+	Node* getComeFromNode(Node *n);
 
 	Vector2D cell2pix(Vector2D cell);
 	Vector2D pix2cell(Vector2D pix);

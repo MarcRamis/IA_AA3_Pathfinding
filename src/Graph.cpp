@@ -111,7 +111,7 @@ void Graph::ChangeWeight()
 
 		for (Node* neighbour : currentNode->neighbours)
 		{
-			SetWeightFromCurrentNodePosition(neighbour->pos);
+			SetWeightFromCurrentNodePosition(getCurrentNodePosition(neighbour->pos)->pos);
 		}
 	}
 }
@@ -132,6 +132,11 @@ void Graph::SetInitialWeight()
 	{
 		n->weight = n->initialWeight;
 	}
+}
+
+Node* Graph::getComeFromNode(Node* n)
+{
+	return n->comeFrom;
 }
 
 Vector2D Graph::cell2pix(Vector2D cell)
