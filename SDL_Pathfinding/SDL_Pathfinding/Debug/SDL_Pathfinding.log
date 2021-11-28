@@ -1,6 +1,2 @@
-﻿  ScenePathFindingMouse.cpp
-  SceneStrategy.cpp
-  main.cpp
-  Generating Code...
-  LINK : C:\Users\alex\Documents\Universidad\GitKraken\AA3_Pathfinding\\bin\SDL_Pathfinding.exe not found or not built by the last incremental link; performing full link
-  SDL_Pathfinding.vcxproj -> C:\Users\alex\Documents\Universidad\GitKraken\AA3_Pathfinding\bin\SDL_Pathfinding.exe
+﻿  Agent.cpp
+  SDL_Pathfinding.vcxproj -> D:\Uni Projects\IA\AA3_Pathfinding\bin\SDL_Pathfinding.exe

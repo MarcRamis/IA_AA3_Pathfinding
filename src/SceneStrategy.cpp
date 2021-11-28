@@ -1,4 +1,5 @@
 #include "SceneStrategy.h"
+#include "Constants.h"
 
 using namespace std;
 
@@ -20,25 +21,25 @@ SceneStrategy::SceneStrategy()
 	agents.push_back(agent);
 
 	// set agent position coords to the center of a random cell
-	numCoins = 5;
 	Vector2D rand_cell(-1, -1);
 	while (!maze->isValidCell(rand_cell))
 		rand_cell = Vector2D((float)(rand() % maze->getNumCellX()), (float)(rand() % maze->getNumCellY()));
 	agents[0]->setPosition(maze->cell2pix(rand_cell));
 
 	// set the coin in a random cell (but at least 3 cells far from the agent)
-	for (int i = 0; i < numCoins; i++)
+	for (int i = 0; i < MAX_COINS; i++)
 	{
-		coinsPos.push_back(Vector2D(-1, -1));
-		while ((!maze->isValidCell(coinsPos[i])) || (Vector2D::Distance(coinsPos[i], rand_cell) < 3))
-			coinsPos[i] = Vector2D((float)(rand() % maze->getNumCellX()), (float)(rand() % maze->getNumCellY()));
+		coins.push_back(Vector2D(-1, -1));
+		while ((!maze->isValidCell(coins[i])) || (Vector2D::Distance(coins[i], rand_cell) < 3))
+			coins[i] = Vector2D((float)(rand() % maze->getNumCellX()), (float)(rand() % maze->getNumCellY()));
 	}
-	coinPosition = Vector2D(-1, -1);
-	while ((!maze->isValidCell(coinPosition)) || (Vector2D::Distance(coinPosition, rand_cell) < 3))
-		coinPosition = Vector2D((float)(rand() % maze->getNumCellX()), (float)(rand() % maze->getNumCellY()));
+	
+	for (Agent *a : agents)
+	{
+		a->setGoal(maze->cell2pix(a->getNearestGoal(coins)));
+		a->setNewPathSearch();
+	}
 
-	agents[0]->setGoal(maze->cell2pix(coinPosition));
-	agents[0]->setNewPathSearch();
 }
 
 
@@ -114,18 +115,16 @@ void SceneStrategy::update(float dtime, SDL_Event* event)
 	// if we have arrived to the coin, replace it in a random cell!
 	for (Agent* agent : agents)
 	{
-		for (Vector2D coinPos : coinsPos)
+		if ((agent->getCurrentTargetIndex() == -1) && (maze->pix2cell(agent->getPosition()) == coinPosition))
 		{
-			if ((agent->getCurrentTargetIndex() == -1) && (maze->pix2cell(agent->getPosition()) == coinPos))
+			coinPosition = Vector2D(-1, -1);
+			while ((!maze->isValidCell(coinPosition)) || (Vector2D::Distance(coinPosition, maze->pix2cell(agent->getPosition())) < 3))
 			{
-				coinPos = Vector2D(-1, -1);
-				while ((!maze->isValidCell(coinPos)) || (Vector2D::Distance(coinPos, maze->pix2cell(agent->getPosition())) < 3))
-					coinPos = Vector2D((float)(rand() % maze->getNumCellX()), (float)(rand() % maze->getNumCellY()));
-
-				agent->setGoal(maze->cell2pix(coinPos));
-				agent->clearPath();
-				agent->setNewPathSearch();
+				coinPosition = Vector2D((float)(rand() % maze->getNumCellX()), (float)(rand() % maze->getNumCellY()));
 			}
+			agent->setGoal(maze->cell2pix(coinPosition));
+			agent->clearPath();
+			agent->setNewPathSearch();
 		}
 	}
 	
@@ -151,7 +150,10 @@ void SceneStrategy::draw()
 		}
 	}
 
-	agents[0]->draw();
+	for (Agent *a : agents)
+	{
+		a->draw();
+	}
 }
 
 const char* SceneStrategy::getTitle()
@@ -188,10 +190,13 @@ void SceneStrategy::drawMaze()
 
 void SceneStrategy::drawCoin()
 {
-	Vector2D coin_coords = maze->cell2pix(coinPosition);
-	int offset = CELL_SIZE / 2;
-	SDL_Rect dstrect = { (int)coin_coords.x - offset, (int)coin_coords.y - offset, CELL_SIZE, CELL_SIZE };
-	SDL_RenderCopy(TheApp::Instance()->getRenderer(), coin_texture, NULL, &dstrect);
+	for (Vector2D coin : coins)
+	{
+		Vector2D coin_coords = maze->cell2pix(coin);
+		int offset = CELL_SIZE / 2;
+		SDL_Rect dstrect = { (int)coin_coords.x - offset, (int)coin_coords.y - offset, CELL_SIZE, CELL_SIZE };
+		SDL_RenderCopy(TheApp::Instance()->getRenderer(), coin_texture, NULL, &dstrect);
+	}
 }
 
 

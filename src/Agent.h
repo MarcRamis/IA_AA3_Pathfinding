@@ -80,6 +80,7 @@ public:
 	bool Agent::loadSpriteTexture(char* filename, int num_frames=1);
 	void setGraph(Grid *grid);
 	Graph* getGraph();
+	Vector2D getNearestGoal(std::vector<Vector2D> goals);
 	Vector2D getGoal();
 	void setGoal(Vector2D goal);
 	void setNewPathSearch();
