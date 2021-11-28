@@ -1,5 +1,5 @@
 #pragma once
-#include "Scene.h"
+#include "ScenePathFindingMouse.h"
 
 class SceneStrategy :
 	public Scene
