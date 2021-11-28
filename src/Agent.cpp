@@ -135,17 +135,17 @@ Graph* Agent::getGraph()
 	return graph;
 }
 
-Vector2D Agent::getNearestGoal(std::vector<Vector2D> goals)
+Vector2D Agent::getNearestGoal(std::vector<Vector2D*> goals)
 {
-	Vector2D currentGoal;
-	float lastDistance = 0;
+	Vector2D currentGoal = cell2pix(*goals[0]);
+	float lastDistance = Vector2D(position - cell2pix(*goals[0])).Length();
 
-	for (Vector2D goal : goals) 
+	for (Vector2D *goal : goals) 
 	{
-		float distance = Vector2D(position - goal).Length();
-		if (distance < lastDistance)
+		float distance = Vector2D(position - cell2pix(*goal)).Length();
+		if (distance <= lastDistance)
 		{
-			currentGoal = goal;
+			currentGoal = *goal;
 			lastDistance = distance;
 		}
 	}
