@@ -1,2 +1,7 @@
-﻿  ScenePathFindingMouse.cpp
-  SDL_Pathfinding.vcxproj -> D:\Uni Projects\IA\AA3_Pathfinding\bin\SDL_Pathfinding.exe
+﻿  main.cpp
+D:\Uni Projects\IA\AA3_Pathfinding\src\Dijkstra.h(5,16): error C2011: 'Dijkstra': 'class' type redefinition
+D:\Uni Projects\IA\AA3_Pathfinding\src\Dijkstra.h(5): message : see declaration of 'Dijkstra'
+D:\Uni Projects\IA\AA3_Pathfinding\src\Greedy.h(5,14): error C2011: 'Greedy': 'class' type redefinition
+D:\Uni Projects\IA\AA3_Pathfinding\src\Greedy.h(5): message : see declaration of 'Greedy'
+D:\Uni Projects\IA\AA3_Pathfinding\src\AStar.h(5,13): error C2011: 'AStar': 'class' type redefinition
+D:\Uni Projects\IA\AA3_Pathfinding\src\AStar.h(5): message : see declaration of 'AStar'
