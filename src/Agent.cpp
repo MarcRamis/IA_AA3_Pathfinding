@@ -138,11 +138,11 @@ Graph* Agent::getGraph()
 Vector2D Agent::getNearestGoal(std::vector<Vector2D*> goals)
 {
 	Vector2D currentGoal = cell2pix(*goals[0]);
-	float lastDistance = Vector2D(position - cell2pix(*goals[0])).Length();
+	float lastDistance = ManhattanDistance(position, cell2pix(goal));
 
 	for (Vector2D *goal : goals) 
 	{
-		float distance = Vector2D(position - cell2pix(*goal)).Length();
+		float distance = ManhattanDistance(position, cell2pix(*goal));
 		if (distance <= lastDistance)
 		{
 			currentGoal = *goal;
@@ -259,4 +259,10 @@ Vector2D Agent::cell2pix(Vector2D cell)
 Vector2D Agent::pix2cell(Vector2D pix)
 {
 	return Vector2D((float)((int)pix.x / CELL_SIZE), (float)((int)pix.y / CELL_SIZE));
+}
+
+
+float Agent::ManhattanDistance(Vector2D& n1, Vector2D& n2)
+{
+	return (abs(n1.x - n2.x) + abs(n1.y - n2.y));
 }

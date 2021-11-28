@@ -1,2 +1,13 @@
-﻿  SceneStrategy.cpp
+﻿  AStar.cpp
+  Agent.cpp
+  BFS.cpp
+  Dijkstra.cpp
+  Greedy.cpp
+  PathFollowing.cpp
+  ScenePathFindingMouse.cpp
+  SceneStrategy.cpp
+  Seek.cpp
+  main.cpp
+  Generating Code...
+  LINK : D:\Uni Projects\IA\AA3_Pathfinding\\bin\SDL_Pathfinding.exe not found or not built by the last incremental link; performing full link
   SDL_Pathfinding.vcxproj -> D:\Uni Projects\IA\AA3_Pathfinding\bin\SDL_Pathfinding.exe

@@ -132,9 +132,10 @@ void SceneStrategy::update(float dtime, SDL_Event* event)
 	// if we have arrived to the coin, replace it in a random cell!
 	for (Agent* a : agents)
 	{
+		bool coinsExist = false;
 		a->update(dtime, event);
 
-		for (Vector2D *coin : coins)
+		for (Vector2D* coin : coins)
 		{
 			// Test distance between agents & coins
 			if ((a->getCurrentTargetIndex() == -1) && (maze->pix2cell(a->getPosition()) == *coin))
@@ -149,10 +150,19 @@ void SceneStrategy::update(float dtime, SDL_Event* event)
 				a->clearPath();
 				a->setNewPathSearch();
 			}
+			else if (maze->pix2cell(a->getGoal()) == *coin)
+			{
+				coinsExist = true;
+			}
+		}
+		if (!coinsExist)
+		{
+			Vector2D coinPos = a->getNearestGoal(coins);
+			a->setGoal(a->cell2pix(coinPos));
+			a->clearPath();
+			a->setNewPathSearch();
 		}
 	}
-	
-
 }
 
 void SceneStrategy::draw()

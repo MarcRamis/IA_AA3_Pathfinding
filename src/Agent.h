@@ -88,4 +88,6 @@ public:
 			 
 	Vector2D cell2pix(Vector2D cell);
 	Vector2D pix2cell(Vector2D cell);
+
+	float ManhattanDistance(Vector2D& n1, Vector2D& n2);
 };
