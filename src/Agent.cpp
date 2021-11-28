@@ -31,6 +31,7 @@ void Agent::setBehavior(SteeringBehavior *behavior)
 	steering_behaviour = behavior;
 }
 
+
 void Agent::setPathfinder(PathFindingAlgorithm* algorithm)
 {
 	pathfinder = algorithm;
@@ -93,14 +94,6 @@ void Agent::update(float dtime, SDL_Event *event)
 	default:
 		break;
 	}
-	
-	// Apply algorithm research
-	if (!searchedPath)
-	{
-		searchedPath = true;
-		pathfinder->CalculatePath(this);
-	}
-	
 
 	// Apply the steering behavior
 	steering_behaviour->applySteeringForce(this, dtime);
@@ -154,7 +147,13 @@ void Agent::setGoal(Vector2D _goal)
 
 void Agent::setNewPathSearch()
 {
-	searchedPath = false;
+	graph->Reset();
+	pathfinder->CalculatePath(this);
+}
+
+Agent::PathFindingAlgorithm* Agent::getPathfinder()
+{
+	return pathfinder;
 }
 
 Vector2D Agent::getPathPoint(int idx)

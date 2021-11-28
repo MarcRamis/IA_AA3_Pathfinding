@@ -31,6 +31,7 @@ ScenePathFindingMouse::ScenePathFindingMouse()
 		coinPosition = Vector2D((float)(rand() % maze->getNumCellX()), (float)(rand() % maze->getNumCellY()));
 
 	agents[0]->setGoal(maze->cell2pix(coinPosition));
+	agents[0]->setNewPathSearch();
 }
 
 
@@ -54,6 +55,38 @@ void ScenePathFindingMouse::update(float dtime, SDL_Event *event)
 	case SDL_KEYDOWN:
 		if (event->key.keysym.scancode == SDL_SCANCODE_SPACE)
 			draw_grid = !draw_grid;
+
+		for (Agent *a : agents)
+		{
+			if (event->key.keysym.scancode == SDL_SCANCODE_B)
+			{
+				delete a->getPathfinder();
+				a->clearPath();
+				a->setPathfinder(new BFS);
+				a->setNewPathSearch();
+			}
+			if (event->key.keysym.scancode == SDL_SCANCODE_D)
+			{
+				delete a->getPathfinder();
+				a->clearPath();
+				a->setPathfinder(new Dijkstra);
+				a->setNewPathSearch();
+			}
+			if (event->key.keysym.scancode == SDL_SCANCODE_G)
+			{
+				delete a->getPathfinder();
+				a->clearPath();
+				a->setPathfinder(new Greedy);
+				a->setNewPathSearch();
+			}
+			if (event->key.keysym.scancode == SDL_SCANCODE_A)
+			{
+				delete a->getPathfinder();
+				a->clearPath();
+				a->setPathfinder(new AStar);
+				a->setNewPathSearch();
+			}
+		}
 		break;
 	case SDL_MOUSEMOTION:
 	case SDL_MOUSEBUTTONDOWN:
@@ -79,6 +112,7 @@ void ScenePathFindingMouse::update(float dtime, SDL_Event *event)
 			coinPosition = Vector2D((float)(rand() % maze->getNumCellX()), (float)(rand() % maze->getNumCellY()));
 
 		agents[0]->setGoal(maze->cell2pix(coinPosition));
+		agents[0]->clearPath();
 		agents[0]->setNewPathSearch();
 	}
 	

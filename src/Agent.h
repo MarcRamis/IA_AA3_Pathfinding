@@ -83,6 +83,7 @@ public:
 	Vector2D getGoal();
 	void setGoal(Vector2D goal);
 	void setNewPathSearch();
+	PathFindingAlgorithm* getPathfinder();
 			 
 	Vector2D cell2pix(Vector2D cell);
 	Vector2D pix2cell(Vector2D cell);
