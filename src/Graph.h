@@ -2,6 +2,8 @@
 #include "Grid.h"
 #include "Node.h"
 
+#include "Constants.h"
+
 class Graph
 {
 
@@ -12,9 +14,12 @@ public:
 	Graph();
 	Graph(Grid* grid);
 	~Graph();
-
+	   
 	std::vector<Node*> getNodes();
 	Node* getCurrentNodePosition(Vector2D target);
+	void ChangeWeight();
+	void SetWeightFromCurrentNodePosition(Vector2D target);
+	void SetInitialWeight();
 
 	Vector2D cell2pix(Vector2D cell);
 	Vector2D pix2cell(Vector2D pix);

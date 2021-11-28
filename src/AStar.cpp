@@ -15,8 +15,6 @@ void AStar::CalculatePath(Agent* agent)
 	Node* currentNode = frontier.top();
 	currentNode->comeFrom = nullptr;
 	countFrontier++;
-	
-	//std::cout << agent->getGoal().x << ' ' << agent->getGoal().y << std::endl;
 
 	while (!frontier.empty()) {
 		currentNode = frontier.top();

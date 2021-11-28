@@ -119,7 +119,6 @@ void Agent::addPathPoint(Vector2D point)
 	path.points.push_back(point);
 }
 
-
 int Agent::getCurrentTargetIndex()
 {
 	return currentTargetIndex;

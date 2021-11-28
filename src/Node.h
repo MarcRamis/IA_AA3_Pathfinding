@@ -13,6 +13,7 @@ public:
 	std::vector<Node*> neighbours;
 	Node* comeFrom = nullptr;
 	
+	float initialWeight = 0;
 	float weight = 0;
 	float costSoFar = 0;
 	float heuristic = 0;
@@ -21,7 +22,7 @@ public:
 
 	Node();
 	Node(Vector2D _pos, float _weight);
-	Node(Vector2D _pos, std::vector<Node*> _neighbours, float _weight);
+	Node(Vector2D _pos, std::vector<Node*> _neighbours, float _weight, float _initialWeight);
 	~Node();
 	
 	struct CostSoFar

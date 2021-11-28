@@ -14,18 +14,21 @@ SceneStrategy::SceneStrategy()
 	
 	Agent* agent;
 
-	for (int i = 0; i < MAX_AGENTS; i++)
-	{
-		agent = new Agent;
-		agent->loadSpriteTexture("../res/soldier.png", 4);
+	agent = new Agent;
+	agent->loadSpriteTexture("../res/soldier.png", 4);
+	agent->setGraph(maze);
+	agent->setBehavior(new PathFollowing);
+	agent->setPathfinder(new AStar);
+	agent->setTarget(Vector2D(-20, -20));
+	agents.push_back(agent);
 
-		agent->setGraph(maze);
-		agent->setBehavior(new PathFollowing);
-		agent->setPathfinder(new AStar);
-		agent->setTarget(Vector2D(-20, -20));
-		
-		agents.push_back(agent);
-	}
+	agent = new Agent;
+	agent->loadSpriteTexture("../res/zombie2.png", 8);
+	agent->setGraph(maze);
+	agent->setBehavior(new PathFollowing);
+	agent->setPathfinder(new AStar);
+	agent->setTarget(Vector2D(-20, -20));
+	agents.push_back(agent);
 
 	Vector2D rand_cell;
 	for (Agent* a : agents)
@@ -129,12 +132,12 @@ void SceneStrategy::update(float dtime, SDL_Event* event)
 		break;
 	}
 
-	// if we have arrived to the coin, replace it in a random cell!
+
+	avoidAgents();
+
 	for (Agent* a : agents)
 	{
 		bool coinsExist = false;
-		a->update(dtime, event);
-
 		for (Vector2D* coin : coins)
 		{
 			// Test distance between agents & coins
@@ -162,6 +165,7 @@ void SceneStrategy::update(float dtime, SDL_Event* event)
 			a->clearPath();
 			a->setNewPathSearch();
 		}
+		a->update(dtime, event);
 	}
 }
 
@@ -210,15 +214,8 @@ void SceneStrategy::drawMaze()
 				rect = { (int)coords.x, (int)coords.y, CELL_SIZE, CELL_SIZE };
 				SDL_RenderFillRect(TheApp::Instance()->getRenderer(), &rect);
 			}
-			else {
-				// Do not draw if it is not necessary (bg is already black)
-			}
-
-
 		}
 	}
-	//Alternative: render a backgroud texture:
-	//SDL_RenderCopy(TheApp::Instance()->getRenderer(), background_texture, NULL, NULL );
 }
 
 void SceneStrategy::drawCoin()
@@ -256,4 +253,27 @@ bool SceneStrategy::loadTextures(char* filename_bg, char* filename_coin)
 		SDL_FreeSurface(image);
 
 	return true;
+}
+
+void SceneStrategy::avoidAgents()
+{
+	for (Agent *a : agents)
+	{
+		for (Agent* a2 : agents)
+		{
+			if (a->getPosition() != a2->getPosition())
+			{
+				if ((Vector2D::Distance(a2->pix2cell(a->getPosition()), a2->pix2cell(a2->getPosition())) < 3))
+				{
+					a2->getGraph()->ChangeWeight();
+
+					Vector2D coinPos = a2->getNearestGoal(coins);
+					a2->setGoal(a2->cell2pix(coinPos));
+					a2->clearPath();
+					a2->setNewPathSearch();
+				}
+				a2->getGraph()->SetInitialWeight();
+			}
+		}
+	}
 }
