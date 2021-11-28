@@ -20,12 +20,19 @@ SceneStrategy::SceneStrategy()
 	agents.push_back(agent);
 
 	// set agent position coords to the center of a random cell
+	numCoins = 5;
 	Vector2D rand_cell(-1, -1);
 	while (!maze->isValidCell(rand_cell))
 		rand_cell = Vector2D((float)(rand() % maze->getNumCellX()), (float)(rand() % maze->getNumCellY()));
 	agents[0]->setPosition(maze->cell2pix(rand_cell));
 
 	// set the coin in a random cell (but at least 3 cells far from the agent)
+	for (int i = 0; i < numCoins; i++)
+	{
+		coinsPos.push_back(Vector2D(-1, -1));
+		while ((!maze->isValidCell(coinsPos[i])) || (Vector2D::Distance(coinsPos[i], rand_cell) < 3))
+			coinsPos[i] = Vector2D((float)(rand() % maze->getNumCellX()), (float)(rand() % maze->getNumCellY()));
+	}
 	coinPosition = Vector2D(-1, -1);
 	while ((!maze->isValidCell(coinPosition)) || (Vector2D::Distance(coinPosition, rand_cell) < 3))
 		coinPosition = Vector2D((float)(rand() % maze->getNumCellX()), (float)(rand() % maze->getNumCellY()));
@@ -105,16 +112,24 @@ void SceneStrategy::update(float dtime, SDL_Event* event)
 	agents[0]->update(dtime, event);
 
 	// if we have arrived to the coin, replace it in a random cell!
-	if ((agents[0]->getCurrentTargetIndex() == -1) && (maze->pix2cell(agents[0]->getPosition()) == coinPosition))
+	for (Agent* agent : agents)
 	{
-		coinPosition = Vector2D(-1, -1);
-		while ((!maze->isValidCell(coinPosition)) || (Vector2D::Distance(coinPosition, maze->pix2cell(agents[0]->getPosition())) < 3))
-			coinPosition = Vector2D((float)(rand() % maze->getNumCellX()), (float)(rand() % maze->getNumCellY()));
+		for (Vector2D coinPos : coinsPos)
+		{
+			if ((agent->getCurrentTargetIndex() == -1) && (maze->pix2cell(agent->getPosition()) == coinPos))
+			{
+				coinPos = Vector2D(-1, -1);
+				while ((!maze->isValidCell(coinPos)) || (Vector2D::Distance(coinPos, maze->pix2cell(agent->getPosition())) < 3))
+					coinPos = Vector2D((float)(rand() % maze->getNumCellX()), (float)(rand() % maze->getNumCellY()));
 
-		agents[0]->setGoal(maze->cell2pix(coinPosition));
-		agents[0]->clearPath();
-		agents[0]->setNewPathSearch();
+				agent->setGoal(maze->cell2pix(coinPos));
+				agent->clearPath();
+				agent->setNewPathSearch();
+			}
+		}
 	}
+	
+	
 
 }
 

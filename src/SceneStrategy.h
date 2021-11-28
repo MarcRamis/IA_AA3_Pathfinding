@@ -12,6 +12,8 @@ public:
 	const char* getTitle();
 private:
 	std::vector<Agent*> agents;
+	std::vector<Vector2D> coinsPos;
+	int numCoins;
 	Vector2D coinPosition;
 
 	Grid* maze;
