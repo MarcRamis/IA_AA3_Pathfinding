@@ -101,6 +101,24 @@ Node* Graph::getCurrentNodePosition(Vector2D target)
 			return currentNode;
 		}
 	}
+
+	for (Node* currentNode : nodes)
+	{
+		if (currentNode->pos == Vector2D(target.x, target.y - 1)) {
+			return currentNode;
+		}
+		else if (currentNode->pos == Vector2D(target.x - 1, target.y)) {
+			return currentNode;
+		}
+		else if (currentNode->pos == Vector2D(target.x, target.y + 1)) {
+			return currentNode;
+		}
+		else if (currentNode->pos == Vector2D(target.x + 1, target.y)) {
+			return currentNode;
+		}
+	}
+	
+
 }
 
 void Graph::ChangeWeight(Vector2D target)

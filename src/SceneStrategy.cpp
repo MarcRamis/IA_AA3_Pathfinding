@@ -231,7 +231,7 @@ void SceneStrategy::updateAgents(float dtime, SDL_Event* event)
 		for (Vector2D* coin : coins)
 		{
 			// Test distance between agents & coins
-			if ((a->getCurrentTargetIndex() == -1) && (maze->pix2cell(a->getPosition()) == *coin))
+			if ((Vector2D::Distance(maze->pix2cell(a->getPosition()), *coin) < 0.5f))
 			{
 				while ((!maze->isValidCell(*coin)) || (Vector2D::Distance(*coin, maze->pix2cell(a->getPosition())) < 3))
 				{
