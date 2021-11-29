@@ -24,5 +24,6 @@ private:
 	SDL_Texture* coin_texture;
 	bool loadTextures(char* filename_bg, char* filename_coin);
 
+	void updateAgents(float dtime, SDL_Event* event);
 	void avoidAgents();
 };

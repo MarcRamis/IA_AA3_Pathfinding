@@ -53,6 +53,7 @@ SceneStrategy::SceneStrategy()
 		Vector2D coinPos = a->getNearestGoal(coins);
 		a->setGoal(a->cell2pix(coinPos));
 		a->setNewPathSearch();
+		a->setOtherAgents(agents);
 	}
 }
 
@@ -131,42 +132,7 @@ void SceneStrategy::update(float dtime, SDL_Event* event)
 	default:
 		break;
 	}
-
-
-	avoidAgents();
-
-	for (Agent* a : agents)
-	{
-		bool coinsExist = false;
-		for (Vector2D* coin : coins)
-		{
-			// Test distance between agents & coins
-			if ((a->getCurrentTargetIndex() == -1) && (maze->pix2cell(a->getPosition()) == *coin))
-			{
-				while ((!maze->isValidCell(*coin)) || (Vector2D::Distance(*coin, maze->pix2cell(a->getPosition())) < 3))
-				{
-					*coin = Vector2D((float)(rand() % maze->getNumCellX()), (float)(rand() % maze->getNumCellY()));
-				}
-
-				Vector2D coinPos = a->getNearestGoal(coins);
-				a->setGoal(a->cell2pix(coinPos));
-				a->clearPath();
-				a->setNewPathSearch();
-			}
-			else if (maze->pix2cell(a->getGoal()) == *coin)
-			{
-				coinsExist = true;
-			}
-		}
-		if (!coinsExist)
-		{
-			Vector2D coinPos = a->getNearestGoal(coins);
-			a->setGoal(a->cell2pix(coinPos));
-			a->clearPath();
-			a->setNewPathSearch();
-		}
-		a->update(dtime, event);
-	}
+	updateAgents(dtime,event);
 }
 
 void SceneStrategy::draw()
@@ -255,6 +221,52 @@ bool SceneStrategy::loadTextures(char* filename_bg, char* filename_coin)
 	return true;
 }
 
+void SceneStrategy::updateAgents(float dtime, SDL_Event* event)
+{
+	avoidAgents();
+
+	for (Agent* a : agents)
+	{
+		bool coinsExist = false;
+		for (Vector2D* coin : coins)
+		{
+			// Test distance between agents & coins
+			if ((a->getCurrentTargetIndex() == -1) && (maze->pix2cell(a->getPosition()) == *coin))
+			{
+				while ((!maze->isValidCell(*coin)) || (Vector2D::Distance(*coin, maze->pix2cell(a->getPosition())) < 3))
+				{
+					*coin = Vector2D((float)(rand() % maze->getNumCellX()), (float)(rand() % maze->getNumCellY()));
+				}
+
+				Vector2D coinPos = a->getNearestGoal(coins);
+				a->setGoal(a->cell2pix(coinPos));
+				a->clearPath();
+				a->setNewPathSearch();
+			}
+			else if (maze->pix2cell(a->getGoal()) == *coin)
+			{
+				coinsExist = true;
+			}
+		}
+		if (!coinsExist)
+		{
+			Vector2D coinPos = a->getNearestGoal(coins);
+			a->setGoal(a->cell2pix(coinPos));
+			a->clearPath();
+			a->setNewPathSearch();
+		}
+
+		if (a->getVelocity().Length() < 1.0f)
+		{
+			Vector2D coinPos = a->getNearestGoal(coins);
+			a->setGoal(a->cell2pix(coinPos));
+			a->clearPath();
+			a->setNewPathSearch();
+		}
+		a->update(dtime, event);
+	}
+}
+
 void SceneStrategy::avoidAgents()
 {
 	for (Agent *a : agents)
@@ -263,16 +275,16 @@ void SceneStrategy::avoidAgents()
 		{
 			if (a->getPosition() != a2->getPosition())
 			{
-				if ((Vector2D::Distance(a2->pix2cell(a->getPosition()), a2->pix2cell(a2->getPosition())) < 3))
+				if ((Vector2D::Distance(maze->pix2cell(a->getPosition()), a2->pix2cell(a2->getPosition())) < MAX_AVOID_DISTANCE))
 				{
-					a2->getGraph()->ChangeWeight();
+					a->getGraph()->ChangeWeight(a2->pix2cell(a2->getPosition()));
 
-					Vector2D coinPos = a2->getNearestGoal(coins);
-					a2->setGoal(a2->cell2pix(coinPos));
-					a2->clearPath();
-					a2->setNewPathSearch();
+					Vector2D coinPos = a->getNearestGoal(coins);
+					a->setGoal(a->cell2pix(coinPos));
+					a->clearPath();
+					a->setNewPathSearch();
 				}
-				a2->getGraph()->SetInitialWeight();
+				a->getGraph()->SetInitialWeight();
 			}
 		}
 	}

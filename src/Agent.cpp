@@ -173,6 +173,30 @@ Agent::PathFindingAlgorithm* Agent::getPathfinder()
 	return pathfinder;
 }
 
+void Agent::setOtherAgents(std::vector<Agent*> _otherAgents)
+{
+	for (Agent *otherAgent : _otherAgents)
+	{
+		if (otherAgent->position != position)
+		{
+			otherAgents.push_back(otherAgent);
+		}
+	}
+
+}
+
+bool Agent::isNearToOtherAgent()
+{
+	for (Agent *otherAgent : otherAgents)
+	{
+		if ((Vector2D::Distance(pix2cell(position), pix2cell(otherAgent->getPosition())) < MAX_AVOID_DISTANCE))
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
 Vector2D Agent::getPathPoint(int idx)
 {
 	return path.points[idx];

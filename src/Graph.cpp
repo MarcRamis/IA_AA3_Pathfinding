@@ -103,16 +103,14 @@ Node* Graph::getCurrentNodePosition(Vector2D target)
 	}
 }
 
-void Graph::ChangeWeight()
+void Graph::ChangeWeight(Vector2D target)
 {
-	for (Node* currentNode : nodes)
-	{
-		currentNode->weight = MAX_WEIGHT_AVOID_AGENTS;
+	Node* currentNode = getCurrentNodePosition(target);
+	currentNode->weight = MAX_WEIGHT_AVOID_AGENTS;
 
-		for (Node* neighbour : currentNode->neighbours)
-		{
-			SetWeightFromCurrentNodePosition(getCurrentNodePosition(neighbour->pos)->pos);
-		}
+	for (Node* neighbour : currentNode->neighbours)
+	{
+		SetWeightFromCurrentNodePosition(getCurrentNodePosition(neighbour->pos)->pos);
 	}
 }
 

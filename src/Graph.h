@@ -17,7 +17,7 @@ public:
 	   
 	std::vector<Node*> getNodes();
 	Node* getCurrentNodePosition(Vector2D target);
-	void ChangeWeight();
+	void ChangeWeight(Vector2D target);
 	void SetWeightFromCurrentNodePosition(Vector2D target);
 	void SetInitialWeight();
 	Node* getComeFromNode(Node *n);

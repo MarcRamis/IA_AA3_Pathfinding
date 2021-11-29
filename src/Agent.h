@@ -42,6 +42,8 @@ private:
 	PathFindingAlgorithm *pathfinder;
 	Graph *graph;
 
+	std::vector<Agent*> otherAgents;
+
 	float mass;
 	float orientation;
 	float max_force;
@@ -85,7 +87,10 @@ public:
 	void setGoal(Vector2D goal);
 	void setNewPathSearch();
 	PathFindingAlgorithm* getPathfinder();
-			 
+	
+	void setOtherAgents(std::vector<Agent*> _otherAgents);
+	bool isNearToOtherAgent();
+	
 	Vector2D cell2pix(Vector2D cell);
 	Vector2D pix2cell(Vector2D cell);
 
