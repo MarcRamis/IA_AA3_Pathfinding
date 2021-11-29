@@ -119,7 +119,6 @@ void Agent::addPathPoint(Vector2D point)
 	path.points.push_back(point);
 }
 
-
 int Agent::getCurrentTargetIndex()
 {
 	return currentTargetIndex;
@@ -133,6 +132,24 @@ int Agent::getPathSize()
 Graph* Agent::getGraph()
 {
 	return graph;
+}
+
+Vector2D Agent::getNearestGoal(std::vector<Vector2D*> goals)
+{
+	Vector2D currentGoal = cell2pix(*goals[0]);
+	float lastDistance = ManhattanDistance(position, cell2pix(goal));
+
+	for (Vector2D *goal : goals) 
+	{
+		float distance = ManhattanDistance(position, cell2pix(*goal));
+		if (distance <= lastDistance)
+		{
+			currentGoal = *goal;
+			lastDistance = distance;
+		}
+	}
+
+	return currentGoal;
 }
 
 Vector2D Agent::getGoal()
@@ -154,6 +171,30 @@ void Agent::setNewPathSearch()
 Agent::PathFindingAlgorithm* Agent::getPathfinder()
 {
 	return pathfinder;
+}
+
+void Agent::setOtherAgents(std::vector<Agent*> _otherAgents)
+{
+	for (Agent *otherAgent : _otherAgents)
+	{
+		if (otherAgent->position != position)
+		{
+			otherAgents.push_back(otherAgent);
+		}
+	}
+
+}
+
+bool Agent::isNearToOtherAgent()
+{
+	for (Agent *otherAgent : otherAgents)
+	{
+		if ((Vector2D::Distance(pix2cell(position), pix2cell(otherAgent->getPosition())) < MAX_AVOID_DISTANCE))
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 Vector2D Agent::getPathPoint(int idx)
@@ -241,4 +282,10 @@ Vector2D Agent::cell2pix(Vector2D cell)
 Vector2D Agent::pix2cell(Vector2D pix)
 {
 	return Vector2D((float)((int)pix.x / CELL_SIZE), (float)((int)pix.y / CELL_SIZE));
+}
+
+
+float Agent::ManhattanDistance(Vector2D& n1, Vector2D& n2)
+{
+	return (abs(n1.x - n2.x) + abs(n1.y - n2.y));
 }

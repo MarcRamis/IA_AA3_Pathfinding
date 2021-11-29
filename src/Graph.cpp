@@ -70,7 +70,8 @@ Graph::Graph(Grid *grid)
 					tmpNeighboursNodes.push_back(tmpNeighboursNode);
 				}
 
-				Node* tmpNode = new Node(Vector2D((unsigned int)j, (unsigned int)i), tmpNeighboursNodes, grid->Weight(Vector2D((unsigned int)j, (unsigned int)i)));
+				Node* tmpNode = new Node(Vector2D((unsigned int)j, (unsigned int)i), tmpNeighboursNodes, 
+					grid->Weight(Vector2D((unsigned int)j, (unsigned int)i)), grid->Weight(Vector2D((unsigned int)j, (unsigned int)i)));
 				nodes.push_back(tmpNode);
 				tmpNeighboursNodes.clear();
 			}
@@ -100,6 +101,40 @@ Node* Graph::getCurrentNodePosition(Vector2D target)
 			return currentNode;
 		}
 	}
+}
+
+void Graph::ChangeWeight(Vector2D target)
+{
+	Node* currentNode = getCurrentNodePosition(target);
+	currentNode->weight = MAX_WEIGHT_AVOID_AGENTS;
+
+	for (Node* neighbour : currentNode->neighbours)
+	{
+		SetWeightFromCurrentNodePosition(getCurrentNodePosition(neighbour->pos)->pos);
+	}
+}
+
+void Graph::SetWeightFromCurrentNodePosition(Vector2D target)
+{
+	for (Node* currentNode : nodes)
+	{
+		if (currentNode->pos == target) {
+			currentNode->weight = MAX_WEIGHT_AVOID_AGENTS;
+		}
+	}
+}
+
+void Graph::SetInitialWeight()
+{
+	for (Node* n : nodes)
+	{
+		n->weight = n->initialWeight;
+	}
+}
+
+Node* Graph::getComeFromNode(Node* n)
+{
+	return n->comeFrom;
 }
 
 Vector2D Graph::cell2pix(Vector2D cell)

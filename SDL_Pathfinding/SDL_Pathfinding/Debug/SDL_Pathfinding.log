@@ -1,2 +1,4 @@
-﻿  ScenePathFindingMouse.cpp
+﻿  SceneStrategy.cpp
+  main.cpp
+  Generating Code...
   SDL_Pathfinding.vcxproj -> D:\Uni Projects\IA\AA3_Pathfinding\bin\SDL_Pathfinding.exe

@@ -42,6 +42,8 @@ private:
 	PathFindingAlgorithm *pathfinder;
 	Graph *graph;
 
+	std::vector<Agent*> otherAgents;
+
 	float mass;
 	float orientation;
 	float max_force;
@@ -80,11 +82,17 @@ public:
 	bool Agent::loadSpriteTexture(char* filename, int num_frames=1);
 	void setGraph(Grid *grid);
 	Graph* getGraph();
+	Vector2D getNearestGoal(std::vector<Vector2D*> goals);
 	Vector2D getGoal();
 	void setGoal(Vector2D goal);
 	void setNewPathSearch();
 	PathFindingAlgorithm* getPathfinder();
-			 
+	
+	void setOtherAgents(std::vector<Agent*> _otherAgents);
+	bool isNearToOtherAgent();
+	
 	Vector2D cell2pix(Vector2D cell);
 	Vector2D pix2cell(Vector2D cell);
+
+	float ManhattanDistance(Vector2D& n1, Vector2D& n2);
 };

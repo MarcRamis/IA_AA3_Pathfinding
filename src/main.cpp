@@ -4,6 +4,7 @@
 
 #include "SDL_SimpleApp.h"
 #include "ScenePathFindingMouse.h"
+#include "SceneStrategy.h"
 
 using namespace std;
 
@@ -14,7 +15,7 @@ int main(int argc, char ** argv)
 	
 	SDL_SimpleApp *app = SDL_SimpleApp::Instance();
 
-	Scene *curr_scene = new ScenePathFindingMouse;
+	Scene *curr_scene = new SceneStrategy;
 	app->setWindowTitle(curr_scene->getTitle());
 
 	
@@ -40,6 +41,9 @@ int main(int argc, char ** argv)
 			}
 			if (event.key.keysym.scancode == SDL_SCANCODE_2)
 			{
+				delete(curr_scene);
+				curr_scene = new SceneStrategy;
+				app->setWindowTitle(curr_scene->getTitle());
 			}
 			if (event.key.keysym.scancode == SDL_SCANCODE_3)
 			{
