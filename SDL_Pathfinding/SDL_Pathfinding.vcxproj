@@ -132,26 +132,35 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Agent.cpp" />
+    <ClCompile Include="..\src\AStar.cpp" />
+    <ClCompile Include="..\src\BFS.cpp" />
+    <ClCompile Include="..\src\Dijkstra.cpp" />
     <ClCompile Include="..\src\Graph.cpp" />
+    <ClCompile Include="..\src\Greedy.cpp" />
     <ClCompile Include="..\src\Grid.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\Node.cpp" />
-    <ClCompile Include="..\src\PathFindingAlgorithm.cpp" />
     <ClCompile Include="..\src\PathFollowing.cpp" />
     <ClCompile Include="..\src\ScenePathFindingMouse.cpp" />
+    <ClCompile Include="..\src\SceneStrategy.cpp" />
     <ClCompile Include="..\src\SDL_SimpleApp.cpp" />
     <ClCompile Include="..\src\Seek.cpp" />
     <ClCompile Include="..\src\utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Agent.h" />
+    <ClInclude Include="..\src\AStar.h" />
+    <ClInclude Include="..\src\BFS.h" />
+    <ClInclude Include="..\src\Constants.h" />
+    <ClInclude Include="..\src\Dijkstra.h" />
     <ClInclude Include="..\src\Graph.h" />
+    <ClInclude Include="..\src\Greedy.h" />
     <ClInclude Include="..\src\Grid.h" />
     <ClInclude Include="..\src\Node.h" />
     <ClInclude Include="..\src\Path.h" />
-    <ClInclude Include="..\src\PathFindingAlgorithm.h" />
     <ClInclude Include="..\src\PathFollowing.h" />
     <ClInclude Include="..\src\ScenePathFindingMouse.h" />
+    <ClInclude Include="..\src\SceneStrategy.h" />
     <ClInclude Include="..\src\Seek.h" />
     <ClInclude Include="..\src\utils.h" />
     <ClInclude Include="..\src\Scene.h" />

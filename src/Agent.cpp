@@ -31,6 +31,12 @@ void Agent::setBehavior(SteeringBehavior *behavior)
 	steering_behaviour = behavior;
 }
 
+
+void Agent::setPathfinder(PathFindingAlgorithm* algorithm)
+{
+	pathfinder = algorithm;
+}
+
 Vector2D Agent::getPosition()
 {
 	return position;
@@ -79,8 +85,6 @@ void Agent::setVelocity(Vector2D _velocity)
 void Agent::update(float dtime, SDL_Event *event)
 {
 
-	//cout << "agent update:" << endl;
-
 	switch (event->type) {
 		/* Keyboard & Mouse events */
 	case SDL_KEYDOWN:
@@ -115,7 +119,6 @@ void Agent::addPathPoint(Vector2D point)
 	path.points.push_back(point);
 }
 
-
 int Agent::getCurrentTargetIndex()
 {
 	return currentTargetIndex;
@@ -124,6 +127,74 @@ int Agent::getCurrentTargetIndex()
 int Agent::getPathSize()
 {
 	return path.points.size();
+}
+
+Graph* Agent::getGraph()
+{
+	return graph;
+}
+
+Vector2D Agent::getNearestGoal(std::vector<Vector2D*> goals)
+{
+	Vector2D currentGoal = cell2pix(*goals[0]);
+	float lastDistance = ManhattanDistance(position, cell2pix(goal));
+
+	for (Vector2D *goal : goals) 
+	{
+		float distance = ManhattanDistance(position, cell2pix(*goal));
+		if (distance <= lastDistance)
+		{
+			currentGoal = *goal;
+			lastDistance = distance;
+		}
+	}
+
+	return currentGoal;
+}
+
+Vector2D Agent::getGoal()
+{
+	return goal;
+}
+
+void Agent::setGoal(Vector2D _goal)
+{
+	goal = _goal;
+}
+
+void Agent::setNewPathSearch()
+{
+	graph->Reset();
+	pathfinder->CalculatePath(this);
+}
+
+Agent::PathFindingAlgorithm* Agent::getPathfinder()
+{
+	return pathfinder;
+}
+
+void Agent::setOtherAgents(std::vector<Agent*> _otherAgents)
+{
+	for (Agent *otherAgent : _otherAgents)
+	{
+		if (otherAgent->position != position)
+		{
+			otherAgents.push_back(otherAgent);
+		}
+	}
+
+}
+
+bool Agent::isNearToOtherAgent()
+{
+	for (Agent *otherAgent : otherAgents)
+	{
+		if ((Vector2D::Distance(pix2cell(position), pix2cell(otherAgent->getPosition())) < MAX_AVOID_DISTANCE))
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 Vector2D Agent::getPathPoint(int idx)
@@ -197,7 +268,24 @@ bool Agent::loadSpriteTexture(char* filename, int _num_frames)
 	return true;
 }
 
-void Agent::setGraph(Graph _graph)
+void Agent::setGraph(Grid *grid)
 {
-	graph = _graph;
+	graph = new Graph(grid);
+}
+
+Vector2D Agent::cell2pix(Vector2D cell)
+{
+	int offset = CELL_SIZE / 2;
+	return Vector2D(cell.x * CELL_SIZE + offset, cell.y * CELL_SIZE + offset);
+}
+
+Vector2D Agent::pix2cell(Vector2D pix)
+{
+	return Vector2D((float)((int)pix.x / CELL_SIZE), (float)((int)pix.y / CELL_SIZE));
+}
+
+
+float Agent::ManhattanDistance(Vector2D& n1, Vector2D& n2)
+{
+	return (abs(n1.x - n2.x) + abs(n1.y - n2.y));
 }
